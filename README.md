@@ -1,1 +1,1 @@
-# Metody-Numeryczne-
+# Metody-Numeryczne
