@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def spline_interpolation(data, x):
+def interpolation(data, x):
     h = np.zeros(data.shape[0]-1)
     b = np.zeros(data.shape[0]-1)
     u = np.zeros(data.shape[0]-1)
@@ -53,7 +53,7 @@ def spline_interpolation(data, x):
 data = np.array([[1.0, 3.0], [2.0, 1.0], [3.5, 4.0], [5.0, 0.0], [6.0, 0.5], [9.0 , -2.0], [9.5, -3.0]])
 x = np.linspace(0, 10, 100)
 
-spline_result = spline_interpolation(data, x)
+results = interpolation(data, x)
 
 
 
@@ -61,7 +61,7 @@ fig = plt.figure()
 axes = fig.add_subplot(1, 1, 1)
     
 axes.plot(data[:,0], data[:,1], 'ko', label="data")
-axes.plot(x, spline_result, 'r', label="S(x)")
+axes.plot(x, results, 'r', label="S(x)")
 
 axes.set_xlabel("x")
 axes.set_ylabel("y")
