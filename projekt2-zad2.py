@@ -55,27 +55,27 @@ x = np.linspace(0, 10, 100)
 
 results = interpolation(data, x)
 
-P_linear = np.zeros(x.shape)
+linear = np.zeros(x.shape)
 
 for n in range(data.shape[0] - 1):
     if n == 0:
-        P_linear += ((data[n + 1, 1] - data[n, 1]) / (data[n + 1, 0] - data[n, 0]) * (x - data[n, 0])
+        linear += ((data[n + 1, 1] - data[n, 1]) / (data[n + 1, 0] - data[n, 0]) * (x - data[n, 0])
                      + data[n, 1]) * (x <= data[n + 1, 0])
     elif n == data.shape[0] - 2:
-        P_linear += ((data[n + 1, 1] - data[n, 1]) / (data[n + 1, 0] - data[n, 0]) * (x - data[n, 0])
+        linear += ((data[n + 1, 1] - data[n, 1]) / (data[n + 1, 0] - data[n, 0]) * (x - data[n, 0])
                      + data[n, 1]) * (x > data[n, 0])
     else:
-        P_linear += ((data[n + 1, 1] - data[n, 1]) / (data[n + 1, 0] - data[n, 0]) * (x - data[n, 0])
+        linear += ((data[n + 1, 1] - data[n, 1]) / (data[n + 1, 0] - data[n, 0]) * (x - data[n, 0])
                      + data[n, 1]) * ((x > data[n, 0]) & (x <= data[n + 1, 0]))
 
-lagrange_poly = lagrange(data[:, 0], data[:, 1])
+lagrange = lagrange(data[:, 0], data[:, 1])
 
 fig = plt.figure()
 axes = fig.add_subplot(1, 1, 1)
 
 axes.plot(data[:, 0], data[:, 1], 'ko', label="data")
 axes.plot(x, results, 'r', label="S_3st(x)")
-axes.plot(x, P_linear, 'b', label="S_1st(x)")
+axes.plot(x, linear, 'b', label="S_1st(x)")
 axes.plot(x, lagrange_poly(x), 'm', label="$P_H(x)")
 
 axes.set_xlabel("x")
